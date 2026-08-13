@@ -1,0 +1,13 @@
+spring.application.name=OverRinCMS
+
+#DB config
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/OverSpringCMS_DB
+spring.datasource.username=root
+spring.datasource.password=password
+
+#Show sql
+spring.jpa.properties.hibernate.show_sql
+#DB_dialect
+#spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+
