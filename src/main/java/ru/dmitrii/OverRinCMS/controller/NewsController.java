@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import ru.dmitrii.OverRinCMS.model.News;
 import ru.dmitrii.OverRinCMS.service.NewsService;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("")
 public class NewsController {
@@ -18,9 +20,18 @@ public class NewsController {
         this.newsService = newsService;
     }
 
-    @GetMapping("/news")
-    public String getNews(){
-        return "news";
+    @GetMapping("/id{id}")
+    public Optional<News> getNews(@PathVariable("id") int id){
+        return newsService.findById(id);
+
+    }
+
+    @PutMapping("/id{id}")
+    public ResponseEntity<Void> updateNews(@PathVariable("id") int id, @RequestBody News news){
+        //тот же save
+        //todo добавить проверки. есть ли новость вообще
+        newsService.update(news);
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping("/add") //добавление новости, тестим через PostMan

@@ -25,4 +25,9 @@ public class NewsService {
     public void save(News news){
         newsRepository.save(news);
     }
+
+    @Transactional
+    public void update(News news){
+        newsRepository.save(news);
+    }
 }
