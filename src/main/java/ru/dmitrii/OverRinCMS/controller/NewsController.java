@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.dmitrii.OverRinCMS.dto.NewsDTO;
-import ru.dmitrii.OverRinCMS.model.News;
 import ru.dmitrii.OverRinCMS.service.NewsService;
 
 import java.util.Optional;

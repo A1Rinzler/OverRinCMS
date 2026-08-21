@@ -7,6 +7,7 @@ import ru.dmitrii.OverRinCMS.dto.NewsDTO;
 import ru.dmitrii.OverRinCMS.mapper.NewsDTO_Mapper;
 import ru.dmitrii.OverRinCMS.model.News;
 import ru.dmitrii.OverRinCMS.repository.NewsRepository;
+import ru.dmitrii.OverRinCMS.util.NewsNotFoundException;
 
 import java.util.Optional;
 
@@ -24,7 +25,7 @@ public class NewsService {
 
     @Transactional
     public Optional<NewsDTO> findById(int id){
-        News news = newsRepository.findById(id).orElse(null);
+        News news = newsRepository.findById(id).orElseThrow(() -> new NewsNotFoundException(id));
 
         if (news == null){
             return Optional.empty();
@@ -40,7 +41,7 @@ public class NewsService {
 
     @Transactional
     public void update(int id, NewsDTO newsDTO){
-        News news = newsRepository.findById(id).orElseThrow();
+        News news = newsRepository.findById(id).orElseThrow(() -> new NewsNotFoundException(id));
        newsDTO_Mapper.updatedNewsFromDto(newsDTO, news);
     }
 }
