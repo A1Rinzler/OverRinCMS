@@ -11,6 +11,8 @@ public interface NewsDTO_Mapper {
 
     NewsDTO toNewsDTO(News news);
 
+
+    //admin
     AdminNewsDTO toNewsDTOAdmin(News news);
     News toNews(AdminNewsDTO newsDTO);
     void updateNewsFromAdminNewsDTO(AdminNewsDTO newsDTO, @MappingTarget News news);
