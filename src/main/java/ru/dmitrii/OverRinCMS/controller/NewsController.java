@@ -25,24 +25,4 @@ public class NewsController {
         return newsService.findById(id);
 
     }
-
-    @PutMapping("/id{id}")
-    public ResponseEntity<Void> updateNews(@PathVariable("id") int id, @RequestBody NewsDTO newsDTO) {
-        //тот же save
-        //todo добавить проверки. есть ли новость вообще
-        newsService.update(id, newsDTO);
-        return ResponseEntity.ok().build();
-    }
-
-    @PostMapping("/add") //добавление новости, тестим через PostMan
-    public ResponseEntity<HttpStatus> addNewNews(@RequestBody NewsDTO newsDTO) {
-        newsService.save(newsDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(HttpStatus.CREATED);
-    }
-
-    @DeleteMapping("/id{id}")
-    public ResponseEntity<Void> deleteNews(@PathVariable("id") int id) {
-            newsService.delete(id);
-            return ResponseEntity.noContent().build();
-    }
 }

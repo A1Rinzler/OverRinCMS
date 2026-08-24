@@ -3,6 +3,7 @@ package ru.dmitrii.OverRinCMS.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.dmitrii.OverRinCMS.dto.AdminNewsDTO;
 import ru.dmitrii.OverRinCMS.dto.NewsDTO;
 import ru.dmitrii.OverRinCMS.mapper.NewsDTO_Mapper;
 import ru.dmitrii.OverRinCMS.model.News;
@@ -34,16 +35,27 @@ public class NewsService {
     }
 
     @Transactional
-    public void save(NewsDTO newsDTO){
-        News news = newsDTO_Mapper.toNews(newsDTO);
+    public Optional<AdminNewsDTO> findByIdAdmin(int id){
+        News news = newsRepository.findById(id).orElseThrow(() -> new NewsNotFoundException(id));
+
+        if (news == null){
+            return Optional.empty();
+        }
+        return Optional.of( newsDTO_Mapper.toNewsDTOAdmin(news));
+    }
+
+    @Transactional
+    public void save(AdminNewsDTO AdminNewsDTO){
+        News news = newsDTO_Mapper.toNews(AdminNewsDTO);
         newsRepository.save(news);
     }
 
     @Transactional
-    public void update(int id, NewsDTO newsDTO){
+    public void update(int id, AdminNewsDTO AdminNewsDTO){
         News news = newsRepository.findById(id).orElseThrow(() -> new NewsNotFoundException(id));
-       newsDTO_Mapper.updatedNewsFromDto(newsDTO, news);
+       newsDTO_Mapper.updateNewsFromAdminNewsDTO(AdminNewsDTO, news);
     }
+
 
     @Transactional
     public void delete(int id){
