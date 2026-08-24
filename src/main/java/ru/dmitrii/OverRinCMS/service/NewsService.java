@@ -44,4 +44,10 @@ public class NewsService {
         News news = newsRepository.findById(id).orElseThrow(() -> new NewsNotFoundException(id));
        newsDTO_Mapper.updatedNewsFromDto(newsDTO, news);
     }
+
+    @Transactional
+    public void delete(int id){
+        News news = newsRepository.findById(id).orElseThrow(() -> new NewsNotFoundException(id));
+        newsRepository.delete(news);
+    }
 }
