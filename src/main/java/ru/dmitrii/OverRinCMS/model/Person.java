@@ -19,7 +19,7 @@ public class Person {
 
     @NotEmpty(message = "Shouldn`t be empty")
     //@Size(message = "Size from 1 to 20")
-    @Column(name = "username")
+    @Column(name = "login")
     private String login;
 
     @NotEmpty(message = "Shouldn`t be empty")
