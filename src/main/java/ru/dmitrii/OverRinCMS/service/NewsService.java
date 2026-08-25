@@ -35,13 +35,9 @@ public class NewsService {
     }
 
     @Transactional
-    public Optional<AdminNewsDTO> findByIdAdmin(int id){
+    public AdminNewsDTO findByIdAdmin(int id){
         News news = newsRepository.findById(id).orElseThrow(() -> new NewsNotFoundException(id));
-
-        if (news == null){
-            return Optional.empty();
-        }
-        return Optional.of( newsDTO_Mapper.toNewsDTOAdmin(news));
+        return newsDTO_Mapper.toNewsDTOAdmin(news);
     }
 
     @Transactional
