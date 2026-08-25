@@ -5,10 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.dmitrii.OverRinCMS.dto.AdminNewsDTO;
-import ru.dmitrii.OverRinCMS.dto.NewsDTO;
 import ru.dmitrii.OverRinCMS.service.NewsService;
-
-import java.util.Optional;
+import ru.dmitrii.OverRinCMS.util.NewsNotFoundException;
 
 @RestController
 @RequestMapping("/admin")
@@ -23,8 +21,8 @@ public class AdminNewsController {
 
     //todo права админа
     @GetMapping("/id{id}")
-    public Optional<AdminNewsDTO> getNews(@PathVariable("id") int id) {
-        return newsService.findByIdAdmin(id);
+    public ResponseEntity<AdminNewsDTO> getNews(@PathVariable("id") int id) {
+        return ResponseEntity.ok(newsService.findByIdAdmin(id));
 
     }
     //todo права админа
@@ -47,5 +45,10 @@ public class AdminNewsController {
     public ResponseEntity<Void> deleteNews(@PathVariable("id") int id) {
         newsService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @ExceptionHandler(NewsNotFoundException.class)
+    private ResponseEntity<Void> exceptionHandler() {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 }
