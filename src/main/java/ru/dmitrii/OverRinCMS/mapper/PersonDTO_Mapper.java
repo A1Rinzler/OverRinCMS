@@ -8,7 +8,7 @@ import ru.dmitrii.OverRinCMS.model.Person;
 @Mapper(componentModel = "spring")
 public interface PersonDTO_Mapper {
 
-    PersonDTO_Mapper toPerson(Person person);
-    Person toPersonDTO(PersonDTO personDTO);
+    PersonDTO_Mapper toPersonDTO(Person person);
+    Person toPerson (PersonDTO personDTO);
     void updatePersonFromPersonDTO(PersonDTO personDTO, @MappingTarget Person person);
 }
