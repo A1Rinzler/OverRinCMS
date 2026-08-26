@@ -31,6 +31,7 @@ public class PersonService {
     public void addNewPerson(PersonDTO personDTO) {
         Person person = personDTO_Mapper.toPerson(personDTO);
         person.setPassword(passwordEncoder.encode(person.getPassword()));
+        person.setRole("ROLE_USER");
         personRepository.save(person);
     }
 }
