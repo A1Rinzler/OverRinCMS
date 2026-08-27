@@ -1,4 +1,4 @@
-package ru.dmitrii.OverRinCMS.controller;
+package ru.dmitrii.OverRinCMS.controller.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,13 +11,13 @@ import ru.dmitrii.OverRinCMS.dto.PersonDTO;
 import ru.dmitrii.OverRinCMS.service.PersonService;
 
 @RestController
-@RequestMapping("/adduser")
-public class UserController {
+@RequestMapping("/admin/adduser")
+public class AdminUserController {
 
     private final PersonService personService;
 
     @Autowired
-    public UserController(PersonService personService) {
+    public AdminUserController(PersonService personService) {
         this.personService = personService;
     }
 
