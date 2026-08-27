@@ -10,7 +10,7 @@ import ru.dmitrii.OverRinCMS.service.NewsService;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("")
+@RequestMapping("/news")
 public class NewsController {
 
     private final NewsService newsService;
