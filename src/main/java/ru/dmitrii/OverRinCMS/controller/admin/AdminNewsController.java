@@ -1,4 +1,4 @@
-package ru.dmitrii.OverRinCMS.controller;
+package ru.dmitrii.OverRinCMS.controller.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
