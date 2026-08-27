@@ -1,5 +1,6 @@
 package ru.dmitrii.OverRinCMS.config;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -48,6 +49,11 @@ public class SecurityConfig {
                         .requestMatchers("/news","/files","/rules","/about","/lk","/error").permitAll()
                         .anyRequest().permitAll())
         .formLogin(formLogin -> formLogin.disable()
+        .logout(logout -> logout
+                .logoutUrl("/admin/auth/logout")
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutSuccessHandler((request, response, authentication) -> response.setStatus(HttpServletResponse.SC_OK)))
         .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
         );
         return http.build();
