@@ -10,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +27,7 @@ public class AdminAuthController {
         this.authenticationManager = authenticationManager;
     }
 
-    @RequestMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<HttpStatus> login(@RequestBody PersonLoginDTO personLoginDTO , HttpSession session) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(personLoginDTO.getLogin(), personLoginDTO.getPassword()));
 
